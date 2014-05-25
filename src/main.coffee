@@ -30,7 +30,6 @@ class Game
     requestAnimationFrame =>
       frameBegin = performance.now()
       @frameReq = requestAnimationFrame frame = (t) =>
-        @paused = no
         dt = (t - frameBegin)/1000
         frameBegin = t
         @frameReq = requestAnimationFrame frame

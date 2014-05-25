@@ -23,7 +23,6 @@ class GameObject
     @timers.tick()
 
   remove: ->
-    return if @removeMe
     @removeMe = yes
 
   after: (seconds, fn) ->
