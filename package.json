@@ -1,0 +1,11 @@
+{
+  "name": "nonstop",
+  "version": "0.0.0",
+  "description": "",
+  "dependencies": {
+    "coffeeify": "^0.6.0",
+    "watchify": "^0.10.1"
+  },
+  "devDependencies": {},
+  "private": true
+}
