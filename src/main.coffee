@@ -1,5 +1,6 @@
 cp = require '../lib/cp'
 
+input = require './input'
 {World, GameObject} = require './world'
 
 canvas = document.body.appendChild document.createElement 'canvas'
@@ -9,11 +10,33 @@ canvas.height = 600
 ctx = canvas.getContext '2d'
 
 class TitleScreen
+  constructor: (@game) ->
   update: (dt) ->
+    if input.pressed 'space'
+      @game.screen = new GameScreen
   draw: ->
     ctx.clearRect 0, 0, canvas.width, canvas.height
     ctx.fillStyle = 'black'
-    ctx.fillText 'foo', 100, 100
+    ctx.fillText 'title screen... press space to start.', 100, 100
+
+class GameScreen
+  constructor: (@game) ->
+    @x = 100
+    @y = 100
+
+  update: (dt) ->
+    if input.down 'left arrow'
+      @x -= 100*dt
+    if input.down 'right arrow'
+      @x += 100*dt
+    if input.down 'up arrow'
+      @y -= 100*dt
+    if input.down 'down arrow'
+      @y += 100*dt
+  draw: ->
+    ctx.clearRect 0, 0, canvas.width, canvas.height
+    ctx.fillStyle = 'black'
+    ctx.fillText 'game screen!', @x, @y
 
 class Game
   constructor: ->
@@ -21,6 +44,7 @@ class Game
 
   update: (dt) ->
     @screen.update? dt
+    input.clearPressed()
 
   draw: ->
     @screen.draw()
